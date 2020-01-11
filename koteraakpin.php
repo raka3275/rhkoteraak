@@ -1,9 +1,11 @@
 <?php
 date_default_timezone_set('Asia/Jakarta');
 include "function.php";
-echo color("green","[]          PEJUANG RECEH      []\n");
-echo color("yellow","[]      AAK AND GEMBEL ELIT             []\n");
-echo color("green","[]  Time  : ".date('[d-m-Y] [H:i:s]')."   []\n");
+echo color("green","[]           PEJUANG RECEH                \n");
+echo color("yellow","[]       AAK AND GEMBEL ELIT             \n");
+echo color("green","[]  Time  : ".date('[d-m-Y] [H:i:s]')."   \n");
+echo color("yellow","[]       waiting proses.....             \n");
+echo color("yellow","[] cara menulis nomor pakai 62xxxxxxxxxx \n");
 function change(){
         $nama = nama();
         $email = str_replace(" ", "", $nama) . mt_rand(100, 999);
@@ -24,7 +26,7 @@ function change(){
         echo color("green","+] Berhasil mendaftar");
         $token = getStr('"access_token":"','"',$verif);
         $uuid = getStr('"resource_owner_id":',',',$verif);
-        echo "\n".color("nevy","?] Mau Redeem Voucher?: ");
+        echo "\n".color("nevy","?] Mau Redeem Voucher?: y/n ");
         $pilihan = trim(fgets(STDIN));
         if($pilihan == "y" || $pilihan == "Y"){
         echo color("red","===========(REDEEM VOUCHER)===========");
@@ -62,7 +64,7 @@ function change(){
         sleep(1);
         }
         sleep(3);
-        $boba11 = request('/go-promotions/v1/promotions/enrollments', $token, '{"promo_code":"GOFOODSATAI11"}');
+        $boba11 = request('/go-promotions/v1/promotions/enrollments', $token, '{"promo_code":"GOFOODSANTAI11"}');
         $messageboba11 = fetch_value($boba11,'"message":"','"');
         if(strpos($boba11, 'Promo kamu sudah bisa dipakai.')){
         echo "\n".color("green","+] Message: ".$messageboba11);
@@ -97,11 +99,12 @@ function change(){
         $expired3 = getStr1('"expiry_date":"','"',$cekvoucher,'3');
         $expired4 = getStr1('"expiry_date":"','"',$cekvoucher,'4');
          setpin:
-         echo "\n".color("nevy","?] Mau set pin?: ");
+         echo "\n".color("nevy","?] Mau set pin?: y/n ");
          $pilih1 = trim(fgets(STDIN));
-         if($pilih1 == "y" && strpos($no, "628")){
+         if($pilih1 == "y" || $pilih1 == "Y"){
+         //if($pilih1 == "y" && strpos($no, "628")){
          echo color("red","===============(SET PIN)===============")."\n";
-         $data2 = '{"pin":"123890"}';
+         $data2 = '{"pin":"787878"}';
          $getotpsetpin = request("/wallet/pin", $token, $data2, null, null, $uuid);
          echo "Otp set pin: ";
          $otpsetpin = trim(fgets(STDIN));
